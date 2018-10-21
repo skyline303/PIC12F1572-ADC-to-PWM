@@ -5159,22 +5159,20 @@ void ADC_result()
 {
     ADCON0bits.GO=1;
     while(ADCON0bits.GO);
-
 }
 
 void PWM()
 {
-    PWM1CLKCON = 0b00000001;
+    PWM1CLKCON = 0b00000000;
     PWM1CON = 0b01100000;
     PWM1PH = 0;
-    PWM1PR = 2047;
+    PWM1PR = 1024;
     APFCONbits.P1SEL = 1;
     PWMENbits.PWM1EN_A=1;
 }
 
 void ADC_set()
 {
-    TRISAbits.TRISA2=1;
     ANSELAbits.ANSA2=1;
     ADCON0bits.CHS=0b10;
     ADCON1bits.ADFM=1;
@@ -5182,37 +5180,19 @@ void ADC_set()
     ADCON1bits.ADCS=0b11;
 }
 
-void PIN_set()
-{
-
-    TRISAbits.TRISA5 = 0;
-
-    LATAbits.LATA5 = 0;
-}
-
 void main(void)
 
 {
+    TRISAbits.TRISA=0b100;
     CM1CON0bits.C1ON=0;
     OSCCON = 0b01111010;
     PWM();
     ADC_set();
-    PIN_set();
 
-
-
-
-  while(1)
+while(1)
     {
-
         ADC_result();
-
         PWM1DC=ADRES;
-
-
-
-
-
         PWMLDbits.PWM1LDA_A=1;
     }
 }
