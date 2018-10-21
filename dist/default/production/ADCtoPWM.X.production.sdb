@@ -67,6 +67,18 @@
 ]
 [u S141 . 1 `S129 1 . 1 0 `S137 1 . 1 0 ]
 [v _ADCON1bits ADCON1bits `VES141  1 e 1 @158 ]
+[s S223 . 1 `uc 1 LATA0 1 0 :1:0 
+`uc 1 LATA1 1 0 :1:1 
+`uc 1 LATA2 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 LATA4 1 0 :1:4 
+`uc 1 LATA5 1 0 :1:5 
+]
+"1730
+[s S230 . 1 `uc 1 LATA 1 0 :6:0 
+]
+[u S232 . 1 `S223 1 . 1 0 `S230 1 . 1 0 ]
+[v _LATAbits LATAbits `VES232  1 e 1 @268 ]
 [s S179 . 1 `uc 1 C1SYNC 1 0 :1:0 
 `uc 1 C1HYS 1 0 :1:1 
 `uc 1 C1SP 1 0 :1:2 
@@ -137,7 +149,7 @@
 "47 C:\Users\G53SX\MPLABXProjects\ADCtoPWM.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"62
+"74
 } 0
 "28
 [v _PWM PWM `(v  1 e 1 0 ]
