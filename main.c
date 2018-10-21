@@ -27,10 +27,10 @@ void ADC_result()
 
 void PWM()
 {
-    PWM1CLKCON = 0b00000001;          // Set HFINTOSC clock, no prescaler.
+    PWM1CLKCON = 0b00000000;          // Set HFINTOSC clock, no prescaler.
     PWM1CON = 0b01100000;             // PWM control (standard mode).
     PWM1PH = 0;                       // Phase.
-    PWM1PR = 1024;                    // Period.
+    PWM1PR = 1737;                    // Period.
     APFCONbits.P1SEL = 1;             // PWM1 on RA5.
     PWMENbits.PWM1EN_A=1;
 }
@@ -48,6 +48,7 @@ void main(void)
 
 {
     TRISAbits.TRISA=0b100;          // I/O RA2 input
+    TRISAbits.TRISA4=0;              // I/O RA4 LED
     CM1CON0bits.C1ON=0;             // Disable Comaprator
     OSCCON = 0b01111010;            // 16 Mhz oscillator.
     PWM();
@@ -56,8 +57,19 @@ void main(void)
 while(1)
     {
         ADC_result();
-        PWM1DC=ADRES;
-        PWMLDbits.PWM1LDA_A=1;
+        if(ADRES>=441)
+            {
+                PWM1DC=ADRES+1000;
+                PWMLDbits.PWM1LDA_A=1;
+                //continue;
+            }
+        if(ADRES<100 && ADRES>750)
+                break;            
+    }
+while(1)
+    {
+        LATAbits.LATA4=1;
+        PWM1DC=1737;
     }
 }
 
