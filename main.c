@@ -1,5 +1,6 @@
 #include <pic12f1572.h>
 #include <stdio.h>
+#include <xc.h>
 
 
 // CONFIG1
@@ -48,7 +49,7 @@ void main(void)
 
 {
     TRISAbits.TRISA=0b100;          // I/O RA2 input
-    TRISAbits.TRISA4=0;              // I/O RA4 LED
+    TRISAbits.TRISA4=0;             // I/O RA4 LED
     CM1CON0bits.C1ON=0;             // Disable Comaprator
     OSCCON = 0b01111010;            // 16 Mhz oscillator.
     PWM();
@@ -57,20 +58,21 @@ void main(void)
 while(1)
     {
         ADC_result();
-        if(ADRES>=441)
+        if(ADRES>=441 && ADRES<=750)
+            PWM1DC=ADRES+1000;
+        else if(ADRES<100 && ADRES>750)
             {
-                PWM1DC=ADRES+1000;
-                PWMLDbits.PWM1LDA_A=1;
-                //continue;
+                LATAbits.LATA4=1;
+                PWM1DC=1737;
             }
-        if(ADRES<100 && ADRES>750)
-                break;            
+        else
+        {
+            LATAbits.LATA4=!LATAbits.LATA4;
+            for(unsigned int a=0; a>=65535; a++)
+                for(char b=0; b==30; b++)
+                NOP();
+        }
+        PWMLDbits.PWM1LDA_A=1;
     }
-while(1)
-    {
-        LATAbits.LATA4=1;
-        PWM1DC=1737;
-    }
+    
 }
-
-
