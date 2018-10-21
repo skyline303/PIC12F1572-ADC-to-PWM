@@ -60,21 +60,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3448
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic12f1572.h: 3448: extern volatile PWMENbits_t PWMENbits __attribute__((address(0xD8E)));
 [v _PWMENbits `VS187 ~T0 @X0 0 e@3470 ]
-"920
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic12f1572.h: 920:     struct {
-[s S57 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S57 . TRISA0 TRISA1 TRISA2 TRISA3 TRISA4 TRISA5 ]
-"928
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic12f1572.h: 928:     struct {
-[s S58 :6 `uc 1 ]
-[n S58 . TRISA ]
-"919
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic12f1572.h: 919: typedef union {
-[u S56 `S57 1 `S58 1 ]
-[n S56 . . . ]
-"932
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic12f1572.h: 932: extern volatile TRISAbits_t TRISAbits __attribute__((address(0x08C)));
-[v _TRISAbits `VS56 ~T0 @X0 0 e@140 ]
 "2248
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic12f1572.h: 2248:     struct {
 [s S122 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -105,22 +90,22 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1619
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic12f1572.h: 1619: extern volatile ADCON1bits_t ADCON1bits __attribute__((address(0x09E)));
 [v _ADCON1bits `VS90 ~T0 @X0 0 e@158 ]
-"1718
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic12f1572.h: 1718:     struct {
-[s S97 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S97 . LATA0 LATA1 LATA2 . LATA4 LATA5 ]
-"1726
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic12f1572.h: 1726:     struct {
-[s S98 :6 `uc 1 ]
-[n S98 . LATA ]
-"1717
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic12f1572.h: 1717: typedef union {
-[u S96 `S97 1 `S98 1 ]
-[n S96 . . . ]
-"1730
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic12f1572.h: 1730: extern volatile LATAbits_t LATAbits __attribute__((address(0x10C)));
-[v _LATAbits `VS96 ~T0 @X0 0 e@268 ]
 [p mainexit ]
+"920
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic12f1572.h: 920:     struct {
+[s S57 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S57 . TRISA0 TRISA1 TRISA2 TRISA3 TRISA4 TRISA5 ]
+"928
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic12f1572.h: 928:     struct {
+[s S58 :6 `uc 1 ]
+[n S58 . TRISA ]
+"919
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic12f1572.h: 919: typedef union {
+[u S56 `S57 1 `S58 1 ]
+[n S56 . . . ]
+"932
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic12f1572.h: 932: extern volatile TRISAbits_t TRISAbits __attribute__((address(0x08C)));
+[v _TRISAbits `VS56 ~T0 @X0 0 e@140 ]
 "1771
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic12f1572.h: 1771:     struct {
 [s S100 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -658,179 +643,150 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic12f1572.h: 8241: __asm("TOSH equ 0FEFh");
 [; <" TOSH equ 0FEFh ;# ">
 "6 main.c
-[; ;main.c: 6: 
+[; ;main.c: 6: void PWM()
 [p x FOSC = INTOSC ]
 "7
-[; ;main.c: 7: void PWM()
+[; ;main.c: 7: {
 [p x WDTE = OFF ]
 "8
-[; ;main.c: 8: {
+[; ;main.c: 8:     PWM1CLKCON = 0b00000000;
 [p x PWRTE = OFF ]
 "9
-[; ;main.c: 9:     PWM1CLKCON = 0b00000001;
+[; ;main.c: 9:     PWM1CON = 0b01100000;
 [p x MCLRE = OFF ]
 "10
-[; ;main.c: 10:     PWM1CON = 0b01100000;
+[; ;main.c: 10:     PWM1PH = 0;
 [p x CP = OFF ]
 "11
-[; ;main.c: 11:     PWM1PH = 0;
+[; ;main.c: 11:     PWM1PR = 1024;
 [p x BOREN = OFF ]
 "12
-[; ;main.c: 12:     PWM1PR = 2047;
+[; ;main.c: 12:     APFCONbits.P1SEL = 1;
 [p x CLKOUTEN = OFF ]
 "15
-[; ;main.c: 15: }
+[; ;main.c: 15: 
 [p x WRT = OFF ]
 "16
-[; ;main.c: 16: 
+[; ;main.c: 16: void ADC_set()
 [p x PLLEN = OFF ]
 "17
-[; ;main.c: 17: void ADC_set()
+[; ;main.c: 17: {
 [p x STVREN = ON ]
 "18
-[; ;main.c: 18: {
+[; ;main.c: 18:     ANSELAbits.ANSA2=1;
 [p x BORV = HI ]
 "19
-[; ;main.c: 19:     TRISAbits.TRISA2=1;
+[; ;main.c: 19:     ADCON0bits.CHS=0b10;
 [p x LPBOREN = OFF ]
 "20
-[; ;main.c: 20:     ANSELAbits.ANSA2=1;
+[; ;main.c: 20:     ADCON1bits.ADFM=1;
 [p x LVP = OFF ]
 "22
-[; ;main.c: 22:     ADCON1bits.ADFM=1;
+[; ;main.c: 22:     ADCON1bits.ADCS=0b11;
 [v _ADC_result `(v ~T0 @X0 1 ef ]
 "23
-[; ;main.c: 23:     ADCON0bits.ADON=1;
+[; ;main.c: 23: }
 {
 [e :U _ADC_result ]
 [f ]
 "24
-[; ;main.c: 24:     ADCON1bits.ADCS=0b11;
+[; ;main.c: 24: 
 [e = . . _ADCON0bits 2 1 -> -> 1 `i `uc ]
 "25
-[; ;main.c: 25: }
+[; ;main.c: 25: void main(void)
 [e $U 437  ]
 [e :U 438 ]
 [e :U 437 ]
 [e $ != -> . . _ADCON0bits 2 1 `i -> 0 `i 438  ]
 [e :U 439 ]
-"27
-[; ;main.c: 27: void PIN_set()
+"26
+[; ;main.c: 26: 
 [e :UE 436 ]
 }
-"29
-[; ;main.c: 29: 
+"28
+[; ;main.c: 28:     TRISAbits.TRISA=0b100;
 [v _PWM `(v ~T0 @X0 1 ef ]
-"30
-[; ;main.c: 30:     TRISAbits.TRISA5 = 0;
+"29
+[; ;main.c: 29:     CM1CON0bits.C1ON=0;
 {
 [e :U _PWM ]
 [f ]
+"30
+[; ;main.c: 30:     OSCCON = 0b01111010;
+[e = _PWM1CLKCON -> -> 0 `i `uc ]
 "31
-[; ;main.c: 31: 
-[e = _PWM1CLKCON -> -> 1 `i `uc ]
-"32
-[; ;main.c: 32:     LATAbits.LATA5 = 0;
+[; ;main.c: 31:     PWM();
 [e = _PWM1CON -> -> 96 `i `uc ]
-"33
-[; ;main.c: 33: }
+"32
+[; ;main.c: 32:     ADC_set();
 [e = _PWM1PH -> -> 0 `i `us ]
+"33
+[; ;main.c: 33: 
+[e = _PWM1PR -> -> 1024 `i `us ]
 "34
-[; ;main.c: 34: 
-[e = _PWM1PR -> -> 2047 `i `us ]
-"35
-[; ;main.c: 35: void main(void)
+[; ;main.c: 34: while(1)
 [e = . . _APFCONbits 0 0 -> -> 1 `i `uc ]
-"36
-[; ;main.c: 36: 
+"35
+[; ;main.c: 35:     {
 [e = . . _PWMENbits 0 0 -> -> 1 `i `uc ]
-"37
-[; ;main.c: 37: {
+"36
+[; ;main.c: 36:         ADC_result();
 [e :UE 440 ]
 }
-"39
-[; ;main.c: 39:     OSCCON = 0b01111010;
+"38
+[; ;main.c: 38:         PWMLDbits.PWM1LDA_A=1;
 [v _ADC_set `(v ~T0 @X0 1 ef ]
-"40
-[; ;main.c: 40:     PWM();
+"39
+[; ;main.c: 39:     }
 {
 [e :U _ADC_set ]
 [f ]
-"41
-[; ;main.c: 41:     ADC_set();
-[e = . . _TRISAbits 0 2 -> -> 1 `i `uc ]
-"42
-[; ;main.c: 42:     PIN_set();
+"40
+[; ;main.c: 40: }
 [e = . . _ANSELAbits 0 2 -> -> 1 `i `uc ]
-"43
-[; ;main.c: 43: 
+"41
 [e = . . _ADCON0bits 1 2 -> -> 2 `i `uc ]
-"44
-[; ;main.c: 44: 
+"42
 [e = . . _ADCON1bits 0 6 -> -> 1 `i `uc ]
-"45
-[; ;main.c: 45: 
+"43
 [e = . . _ADCON0bits 0 0 -> -> 1 `i `uc ]
-"46
-[; ;main.c: 46: 
+"44
 [e = . . _ADCON1bits 1 2 -> -> 3 `i `uc ]
-"47
-[; ;main.c: 47:   while(1)
+"45
 [e :UE 441 ]
 }
-"49
-[; ;main.c: 49: 
-[v _PIN_set `(v ~T0 @X0 1 ef ]
-"50
-[; ;main.c: 50:         ADC_result();
-{
-[e :U _PIN_set ]
-[f ]
-"52
-[; ;main.c: 52:         PWM1DC=ADRES;
-[e = . . _TRISAbits 0 5 -> -> 0 `i `uc ]
-"54
-[; ;main.c: 54: 
-[e = . . _LATAbits 0 5 -> -> 0 `i `uc ]
-"55
-[; ;main.c: 55: 
-[e :UE 442 ]
-}
 [v $root$_main `(v ~T0 @X0 0 e ]
-"57
-[; ;main.c: 57: 
+"47
 [v _main `(v ~T0 @X0 1 ef ]
-"59
-[; ;main.c: 59:     }
+"49
 {
 [e :U _main ]
 [f ]
-"60
-[; ;main.c: 60: }
+"50
+[e = . . _TRISAbits 1 0 -> -> 4 `i `uc ]
+"51
 [e = . . _CM1CON0bits 0 7 -> -> 0 `i `uc ]
-"61
+"52
 [e = _OSCCON -> -> 122 `i `uc ]
-"62
+"53
 [e ( _PWM ..  ]
-"63
+"54
 [e ( _ADC_set ..  ]
-"64
-[e ( _PIN_set ..  ]
-"69
-[e :U 445 ]
-"70
-{
-"72
-[e ( _ADC_result ..  ]
-"74
-[e = _PWM1DC _ADRES ]
-"80
-[e = . . _PWMLDbits 0 0 -> -> 1 `i `uc ]
-"81
-}
+"56
 [e :U 444 ]
-[e $U 445  ]
-[e :U 446 ]
-"82
-[e :UE 443 ]
+"57
+{
+"58
+[e ( _ADC_result ..  ]
+"59
+[e = _PWM1DC _ADRES ]
+"60
+[e = . . _PWMLDbits 0 0 -> -> 1 `i `uc ]
+"61
+}
+[e :U 443 ]
+[e $U 444  ]
+[e :U 445 ]
+"62
+[e :UE 442 ]
 }
