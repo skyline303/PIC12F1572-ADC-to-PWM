@@ -5163,10 +5163,10 @@ void ADC_result()
 
 void PWM()
 {
-    PWM1CLKCON = 0b00000001;
+    PWM1CLKCON = 0b00000000;
     PWM1CON = 0b01100000;
     PWM1PH = 0;
-    PWM1PR = 1024;
+    PWM1PR = 1737;
     APFCONbits.P1SEL = 1;
     PWMENbits.PWM1EN_A=1;
 }
@@ -5184,6 +5184,7 @@ void main(void)
 
 {
     TRISAbits.TRISA=0b100;
+    TRISAbits.TRISA4=0;
     CM1CON0bits.C1ON=0;
     OSCCON = 0b01111010;
     PWM();
@@ -5192,7 +5193,18 @@ void main(void)
 while(1)
     {
         ADC_result();
-        PWM1DC=ADRES;
-        PWMLDbits.PWM1LDA_A=1;
+        if(ADRES>=441)
+            {
+                PWM1DC=ADRES+1000;
+                PWMLDbits.PWM1LDA_A=1;
+
+            }
+        if(ADRES<100 && ADRES>750)
+                break;
+    }
+while(1)
+    {
+        LATAbits.LATA4=1;
+        PWM1DC=1737;
     }
 }
