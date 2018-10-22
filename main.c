@@ -25,8 +25,12 @@
 void delay()
 {
     for(unsigned int a=0; a==65535; a++)
-                for(unsigned int b=0; b==65535; b++)
-                NOP();
+    {
+                for(char b=0; b==30; b++)
+                {
+                    NOP();
+                }
+    }
 }
 void ADC_result()
 {
@@ -79,8 +83,8 @@ while(1)
         else
         {
             LATAbits.LATA4=!LATAbits.LATA4;
-            //delay();
-            __delay_ms(500);
+            delay();
+            //__delay_ms(500);
             PWM1DC=0;
         }
         PWMLDbits.PWM1LDA_A=1;
