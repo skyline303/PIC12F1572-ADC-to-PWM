@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <xc.h>
 
+#define _XTAL_FREQ 16000000
+
 
 // CONFIG1
 #pragma config FOSC = INTOSC    //  (INTOSC oscillator; I/O function on CLKIN pin)
@@ -20,6 +22,12 @@
 #pragma config LPBOREN = OFF    // Low Power Brown-out Reset enable bit (LPBOR is disabled)
 #pragma config LVP = OFF        // Low-Voltage Programming Enable (High-voltage on MCLR/VPP must be used for programming)
 
+void delay()
+{
+    for(unsigned int a=0; a==65535; a++)
+                for(unsigned int b=0; b==65535; b++)
+                NOP();
+}
 void ADC_result()
 {
     ADCON0bits.GO=1;                // ADC start conversion
@@ -59,8 +67,11 @@ while(1)
     {
         ADC_result();
         if(ADRES>=441 && ADRES<=750)
+        {
             PWM1DC=ADRES+1000;
-        else if(ADRES<100 && ADRES>750)
+            LATAbits.LATA4=0;
+        }
+        else if(ADRES>750)
             {
                 LATAbits.LATA4=1;
                 PWM1DC=1737;
@@ -68,9 +79,9 @@ while(1)
         else
         {
             LATAbits.LATA4=!LATAbits.LATA4;
-            for(unsigned int a=0; a>=65535; a++)
-                for(char b=0; b==30; b++)
-                NOP();
+            //delay();
+            __delay_ms(500);
+            PWM1DC=0;
         }
         PWMLDbits.PWM1LDA_A=1;
     }
